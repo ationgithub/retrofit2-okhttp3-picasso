@@ -1,0 +1,30 @@
+package com.ysbing.retrofitdemo.api;
+/*Retrofit2.0*/
+
+import com.ysbing.retrofitdemo.bean.ApiBean;
+import com.ysbing.retrofitdemo.bean.DemoBean;
+import com.ysbing.retrofitdemo.bean.IpBean;
+import com.ysbing.retrofitdemo.bean.Tngou;
+
+import retrofit.Call;
+import retrofit.http.GET;
+import retrofit.http.Path;
+import retrofit.http.Query;
+
+public interface APIService {
+
+    @GET("/service/getIpInfo.php")
+    Call<DemoBean> getIpInfo(@Query("ip") String ip);
+
+    @GET("/service/getIpInfo.php")
+    Call<ApiBean<IpBean>> getIpInfo2(@Query("ip") String ip);
+    
+    @GET("/")//网址下面的子目录
+    Call<String> getBaidu();
+ 
+    @GET("/api/{category}/list")//网址下面的子目录  category表示分类，因为子目录只有一点不一样
+    
+    Call<Tngou>getList(@Path("category")String path,@Query("id") int id, @Query("page") int page, @Query("rows") int rows);
+    
+    
+}
